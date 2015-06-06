@@ -3,5 +3,16 @@
 - hosts: localhost
   remote_user: root
 
+  pre_tasks:
+    - name: Assures /var/linbo directory exists
+      file:
+        path: "/var/linbo"
+        state: directory
+
+      ## fatal: unable to auto-detect email address (got 'root@testing-worker-linux-a01deac5-1-8294-linux-12-65696275.(none)')
+    - name: Setup a email address for git (required for travis)
+      command: git config --global user.email "you@example.com"
+      changed_when: False
+
   roles:
     - ansible-linuxmuster_net-server-customize
