@@ -1,13 +1,26 @@
 ## linuxmuster_net-server-customize
 
 [![Travis CI](http://img.shields.io/travis/ypid/ansible-linuxmuster_net-server-customize.svg?style=flat)](http://travis-ci.org/ypid/ansible-linuxmuster_net-server-customize)
+[![Ansible Galaxy](http://img.shields.io/badge/galaxy-ypid.linuxmuster_net–server–customize-660198.svg?style=flat)](https://galaxy.ansible.com/list#/roles/4054)
+[![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
 
 
-Apply common customizations to a linuxmuster.net server.
+Apply common customizations to a https://linuxmuster.net/ server.
 
 Features:
 
 * Puts Linbo configuration files under version control.
+
+### Installation
+
+This role requires at least Ansible `v1.3`. To install it, run:
+
+    ansible-galaxy install ypid.linuxmuster_net-server-customize
+
+To install via git, run either:
+
+    git clone https://github.com/ypid/ansible-linuxmuster_net-server-customize ypid.linuxmuster_net-server-customize
+    git submodule add https://github.com/ypid/ansible-linuxmuster_net-server-customize roles/ypid.linuxmuster_net-server-customize
 
 
 

@@ -2,7 +2,8 @@
 
 galaxy_info:
   author: Robin Schneider
-  description: Apply common customizations to a linuxmuster.net server.
+  description: |
+    Apply common customizations to a https://linuxmuster.net/ server.
   license: AGPLv3
   platforms:
   - name: Ubuntu
@@ -15,7 +16,7 @@ dependencies: []
 ansigenome_info:
   github_url: "https://github.com/ypid/ansible-linuxmuster_net-server-customize"
   git_branch: "master"
-  # galaxy_id: "2980"
+  galaxy_id: "4054"
 
   travis: True
 
