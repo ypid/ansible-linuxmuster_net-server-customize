@@ -1,0 +1,22 @@
+---
+
+- name: Create gitignore file for linbo repository
+  template:
+    src: "linbo_gitignore.j2"
+    dest: "/var/linbo/.gitignore"
+    mode: 0640
+    owner: root
+    group: root
+
+- name: Initialize git repository for linbo configuration
+  command: git init
+  args:
+    creates: "/var/linbo/.git"
+    chdir: "/var/linbo"
+  register: linuxmuster_net_customize_linbo_git_init
+
+- name: Initial commit git repository for linbo configuration
+  shell: git add . && git commit --message "Initial commit."
+  args:
+    creates: "/var/linbo/.git/refs/heads/master"
+    chdir: "/var/linbo"
