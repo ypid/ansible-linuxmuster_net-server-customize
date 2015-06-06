@@ -5,7 +5,7 @@
 [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
 
 
-Apply common customizations to a https://linuxmuster.net/ server.
+Apply common customizations to a [https://linuxmuster.net/](https://linuxmuster.net/) server.
 
 Features:
 

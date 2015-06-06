@@ -3,7 +3,7 @@
 galaxy_info:
   author: Robin Schneider
   description: |
-    Apply common customizations to a https://linuxmuster.net/ server.
+    Apply common customizations to a [https://linuxmuster.net/](https://linuxmuster.net/) server.
   license: AGPLv3
   platforms:
   - name: Ubuntu
