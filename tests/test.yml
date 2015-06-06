@@ -4,4 +4,4 @@
   remote_user: root
 
   roles:
-    - ansible-linuxmuster-customize
+    - ansible-linuxmuster_net-server-customize
