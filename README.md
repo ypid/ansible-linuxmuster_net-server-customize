@@ -5,11 +5,13 @@
 [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
 
 
-Apply common customizations to a [https://linuxmuster.net/](https://linuxmuster.net/) server.
+Apply common customizations to a linuxmuster.net server.
+
+See [linuxmuster.net](https://linuxmuster.net) for more information.
 
 Features:
 
-* Puts Linbo configuration files under version control.
+* Put [Linbo](https://de.wikipedia.org/wiki/LINBO) configuration files under version control.
 
 ### Installation
 
