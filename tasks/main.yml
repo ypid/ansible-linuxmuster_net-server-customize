@@ -15,8 +15,23 @@
     chdir: "/var/linbo"
   register: linuxmuster_net_customize_linbo_git_init
 
+- name: Change file permissions on .git directory to avoid read access via rsync
+  file:
+    path: "/var/linbo/.git"
+    mode: "0750"
+    owner: root
+    group: root
+
 - name: Initial commit git repository for linbo configuration
   shell: git add . && git commit --message "Initial commit."
   args:
     creates: "/var/linbo/.git/refs/heads/master"
     chdir: "/var/linbo"
+
+- name: Copy custom linbo configuration files to the server
+  synchronize:
+    src: "./linbo"
+    dest: "/var"
+    recursive: yes
+    links: yes
+    set_remote_user: no
