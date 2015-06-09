@@ -35,3 +35,4 @@
     recursive: yes
     links: yes
     set_remote_user: no
+  tags: ci_ignore
