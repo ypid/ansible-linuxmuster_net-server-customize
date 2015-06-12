@@ -1,12 +1,28 @@
 ---
 
-- name: Create gitignore file for linbo repository
+- name: Create example configuration file for linbo repository
   template:
-    src: "linbo_gitignore.j2"
-    dest: "/var/linbo/.gitignore"
-    mode: 0640
+    src: "{{ item.src }}"
+    dest: "{{ item.target }}"
+    mode: "{{ item.mode | default(0640) }}"
     owner: root
     group: root
+  with_items:
+    - src: "linbo_gitignore.j2"
+      target: "/var/linbo/.gitignore"
+    # - src: "start.conf.j2"
+      # target: "/var/linbo/examples/start.conf.ypid"
+      # mode: 0644
+
+- name: Create linbo system group configuration files
+  template:
+    src: "start.conf.j2"
+    dest: "/var/linbo/start.conf.{{ item.name }}"
+    mode: 0644
+    owner: root
+    group: root
+  with_flattened:
+    - linuxmuster_net_server_customize_system_groups
 
 - name: Initialize git repository for linbo configuration
   command: git init

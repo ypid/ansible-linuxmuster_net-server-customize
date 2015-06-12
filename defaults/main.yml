@@ -1,0 +1,48 @@
+---
+
+## Set default partition sizes for operation systems in GiB.
+linuxmuster_net_server_customize_default_partition_size:
+
+  linux: 50
+  ## Imaging will take longer because of zeroing …
+  ## Maybe consider creating an specific system group for imaging with a small partition.
+
+  cache: 30
+  swap: 2
+
+linuxmuster_net_server_customize_default_auto_partition: 'no'
+linuxmuster_net_server_customize_default_auto_format: 'no'
+linuxmuster_net_server_customize_default_auto_init_cache: 'no'
+
+# linuxmuster_net_server_customize_default_auto_partition: 'no'
+# linuxmuster_net_server_customize_default_auto_partition: 'yes'
+# linuxmuster_net_server_customize_default_auto_format: '{{ linuxmuster_net_server_customize_default_auto_partition }}'
+# linuxmuster_net_server_customize_default_auto_init_cache:  '{{ linuxmuster_net_server_customize_default_auto_partition }}'
+
+## The cache partition is the last partition and will end at the end of the block device if the following is true.
+## If false, only the space specified by linuxmuster_net_server_customize_default_partition_size.cache will be used.
+## This might result in unused space on the block device.
+linuxmuster_net_server_customize_use_max_cache_partition: True
+
+linuxmuster_net_server_customize_default_download_type: 'rsync'
+linuxmuster_net_server_customize_default_autostart: 'yes'
+linuxmuster_net_server_customize_default_autostart_timeout: 5
+
+linuxmuster_net_server_customize_default_action: 'start'
+# linuxmuster_net_server_customize_default_action: 'sync'
+# linuxmuster_net_server_customize_default_action: 'new'
+
+
+linuxmuster_net_server_customize_system_groups:
+  # - name: 'hp10'
+  #
+  # - name: 'test'
+
+  #   # AutoPartition: 'yes'
+  #   # AutoFormat: 'yes'
+  #   # AutoInitCache: 'yes'
+
+  #   Autostart: 'yes'
+  #   AutostartTimeout: 5
+  #   DefaultAction: 'start'
+  #   os_partition_size: 120

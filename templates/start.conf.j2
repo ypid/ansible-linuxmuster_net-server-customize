@@ -1,0 +1,99 @@
+## {{ ansible_managed }}
+{% if item.target is string %}
+{% set template_mode_start_conf = 'example' %}
+{% else %}
+{% set template_mode_start_conf = 'real' %}
+{% endif %}
+{% if template_mode_start_conf == 'example' %}
+## This only applies to the original file: {{ item.target }}
+## The current file might be only a (modified) copy of this file.
+{% else %}
+## File path: /var/linbo/start.conf.{{ item.name }}
+## Only make direct changes for testing purposes.
+{% endif %}
+
+[LINBO]                             # Start der globalen Konfiguration
+Cache = /dev/sda3                   # lokale Cache Partition
+Server = 10.16.1.1       # IP des Linbo-Servers, der das Linbo-Repository vorhält
+{% if template_mode_start_conf == 'example' %}
+Group = example           # Name der Rechnergruppe für die diese Konfigurationsdatei gilt
+{% else %}
+Group = {{ item.name }}           # Name der Rechnergruppe für die diese Konfigurationsdatei gilt
+{% endif %}
+# Achtung: Server und Group werden beim Workstationsimport automatisch gesetzt!
+RootTimeout = 600                   # automatischer Rootlogout nach 600 Sek.
+{% if template_mode_start_conf == 'example' %}
+Autopartition = {{ linuxmuster_net_server_customize_default_auto_partition }}                  # keine automatische Partitionsreparatur beim LINBO-Start
+AutoFormat = {{ linuxmuster_net_server_customize_default_auto_format }}                     # kein automatisches Formatieren aller Partitionen beim LINBO-Start
+AutoInitCache = {{ linuxmuster_net_server_customize_default_auto_init_cache }}                  # kein automatisches Befüllen des Caches beim LINBO-Start
+{% else %}
+Autopartition = {{ item.AutoPartition | default(linuxmuster_net_server_customize_default_auto_partition) }}                  # keine automatische Partitionsreparatur beim LINBO-Start
+AutoFormat = {{ item.AutoFormat | default(linuxmuster_net_server_customize_default_auto_format) }}                     # kein automatisches Formatieren aller Partitionen beim LINBO-Start
+AutoInitCache = {{ item.AutoInitCache | default(linuxmuster_net_server_customize_default_auto_init_cache) }}                  # kein automatisches Befüllen des Caches beim LINBO-Start
+{% endif %}
+DownloadType = {{ linuxmuster_net_server_customize_default_download_type }}              # Image-Download per torrent|multicast|rsync, default ist rsync
+BackgroundFontColor = yellow         # Bildschirmschriftfarbe (default: white)
+ConsoleFontColorStdout = white # Konsolenschriftfarbe (default: white)
+ConsoleFontColorStderr = red     # Konsolenschriftfarbe für Fehler-/Warnmeldungen (default: red)
+KernelOptions =          # Beispiele:
+#KernelOptions = acpi=noirq irqpoll  # LINBO Kerneloptionen (z. B. acpi=off), m. Leerz. getrennt
+#KernelOptions = server=10.16.1.5  # Abweichende Linbo-Server-IP als Kerneloption gesetzt
+                                   # falls gesetzt wird diese IP beim Workstationsimport verwendet
+
+{% if template_mode_start_conf == 'example' or item.os_partition_size is undefined %}
+{% set os_partition_size_gib = linuxmuster_net_server_customize_default_partition_size.linux|int %}
+{% else %}
+{% set os_partition_size_gib = item.os_partition_size|int %}
+{% endif %}
+[Partition]              # Start einer Partitionsdefinition fuer ein Betriebssystem (Ubuntu)
+Dev = /dev/sda1          # Device-Name der Partition (sda1 = erste Partition auf erster Platte)
+Size = {{ os_partition_size_gib * 1024 * 1024 }}          # Partitionsgroesse in KiB. {{ os_partition_size_gib }} GiB.
+Id = 83                  # Partitionstyp (83 = Linux, 82 = swap, c = FAT32, 7 = NTFS, ...)
+FSType = ext4            # Dateisystem ext4
+Bootable = no            # Bootable-Flag
+
+[Partition]              # Definition der Swap-Partition
+Dev = /dev/sda2          # Device-Name der Partition
+Size = {{ linuxmuster_net_server_customize_default_partition_size.swap|int * 1024 * 1024 }}          # Partitionsgroesse in KiB. {{ linuxmuster_net_server_customize_default_partition_size.cache|int }} GiB.
+Id = 82                  # Partitionstyp (83 = Linux, 82 = swap, c = FAT32, ...)
+FSType = swap            # Dateisystem swap
+Bootable = no            # Bootable-Flag
+
+[Partition]              # Start einer Partitionsdefinition, Cachepartition
+Dev = /dev/sda3          # Device-Name der Partition
+{% if linuxmuster_net_server_customize_use_max_cache_partition %}
+Size = {{ linuxmuster_net_server_customize_default_partition_size.cache|int * 1024 * 1024 }}          # Partitionsgroesse in KiB. {{ linuxmuster_net_server_customize_default_partition_size.cache|int }} GiB.
+{% else %}
+Size =                   # Partitionsgroesse in kB (Bsp.: keine Angabe = Rest der Platte)
+{% endif %}
+Id = 83                  # Partitionstyp (83 = Linux, 82 = swap, c = FAT32, 7 = NTFS, ...)
+FSType = ext4            # Dateisystem ext4
+Bootable = no            # Bootable-Flag
+
+
+
+[OS]
+Name = Linux Mint
+Version = 17 Qiana
+Description =
+IconName = default.png
+Image =
+BaseImage = linux_mint.cloop
+Boot = /dev/sda1
+Root = /dev/sda1
+Kernel = vmlinuz
+Initrd = initrd.img
+Append =
+StartEnabled = yes
+SyncEnabled = yes
+NewEnabled = yes
+Hidden = yes
+{% if template_mode_start_conf == 'example' %}
+Autostart = {{ linuxmuster_net_server_customize_default_autostart }}
+AutostartTimeout = {{ linuxmuster_net_server_customize_default_autostart_timeout }}
+DefaultAction = {{ linuxmuster_net_server_customize_default_action }}
+{% else %}
+Autostart = {{ item.Autostart | default(linuxmuster_net_server_customize_default_autostart) }}
+AutostartTimeout = {{ item.AutostartTimeout | default(linuxmuster_net_server_customize_default_autostart_timeout) }}
+DefaultAction = {{ item.DefaultAction | default(linuxmuster_net_server_customize_default_action) }}
+{% endif %}

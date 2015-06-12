@@ -2,7 +2,7 @@
 
 [![Travis CI](http://img.shields.io/travis/ypid/ansible-linuxmuster_net-server-customize.svg?style=flat)](http://travis-ci.org/ypid/ansible-linuxmuster_net-server-customize)
 [![Ansible Galaxy](http://img.shields.io/badge/galaxy-ypid.linuxmuster_net–server–customize-660198.svg?style=flat)](https://galaxy.ansible.com/list#/roles/4054)
-[![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
+[![Platforms](http://img.shields.io/badge/platforms-debian%20/%20ubuntu-lightgrey.svg?style=flat)](#)
 
 
 Apply common customizations to a linuxmuster.net server.
@@ -21,11 +21,64 @@ This role requires at least Ansible `v1.3`. To install it, run:
 
 To install via git, run either:
 
-    git clone https://github.com/ypid/ansible-linuxmuster_net-server-customize ypid.linuxmuster_net-server-customize
-    git submodule add https://github.com/ypid/ansible-linuxmuster_net-server-customize roles/ypid.linuxmuster_net-server-customize
+    git clone https://github.com/ypid/ansible-linuxmuster_net-server-customize.git ypid.linuxmuster_net-server-customize
+    git submodule add https://github.com/ypid/ansible-linuxmuster_net-server-customize.git roles/ypid.linuxmuster_net-server-customize
 
 
 
+
+### Role variables
+
+List of default variables available in the inventory:
+
+    ---
+    
+    ## Set default partition sizes for operation systems in GiB.
+    linuxmuster_net_server_customize_default_partition_size:
+    
+      linux: 50
+      ## Imaging will take longer because of zeroing …
+      ## Maybe consider creating an specific system group for imaging with a small partition.
+    
+      cache: 30
+      swap: 2
+    
+    linuxmuster_net_server_customize_default_auto_partition: 'no'
+    linuxmuster_net_server_customize_default_auto_format: 'no'
+    linuxmuster_net_server_customize_default_auto_init_cache: 'no'
+    
+    # linuxmuster_net_server_customize_default_auto_partition: 'no'
+    # linuxmuster_net_server_customize_default_auto_partition: 'yes'
+    # linuxmuster_net_server_customize_default_auto_format: '{{ linuxmuster_net_server_customize_default_auto_partition }}'
+    # linuxmuster_net_server_customize_default_auto_init_cache:  '{{ linuxmuster_net_server_customize_default_auto_partition }}'
+    
+    ## The cache partition is the last partition and will end at the end of the block device if the following is true.
+    ## If false, only the space specified by linuxmuster_net_server_customize_default_partition_size.cache will be used.
+    ## This might result in unused space on the block device.
+    linuxmuster_net_server_customize_use_max_cache_partition: True
+    
+    linuxmuster_net_server_customize_default_download_type: 'rsync'
+    linuxmuster_net_server_customize_default_autostart: 'yes'
+    linuxmuster_net_server_customize_default_autostart_timeout: 5
+    
+    linuxmuster_net_server_customize_default_action: 'start'
+    # linuxmuster_net_server_customize_default_action: 'sync'
+    # linuxmuster_net_server_customize_default_action: 'new'
+    
+    
+    linuxmuster_net_server_customize_system_groups:
+      # - name: 'hp10'
+      #
+      # - name: 'test'
+    
+      #   # AutoPartition: 'yes'
+      #   # AutoFormat: 'yes'
+      #   # AutoInitCache: 'yes'
+    
+      #   Autostart: 'yes'
+      #   AutostartTimeout: 5
+      #   DefaultAction: 'start'
+      #   os_partition_size: 120
 
 
 
