@@ -21,6 +21,7 @@
     mode: 0644
     owner: root
     group: root
+  when: item is defined and item.name is string
   with_flattened:
     - linuxmuster_net_server_customize_system_groups
 
