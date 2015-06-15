@@ -54,7 +54,7 @@ Bootable = no            # Bootable-Flag
 
 [Partition]              # Definition der Swap-Partition
 Dev = /dev/sda2          # Device-Name der Partition
-Size = {{ linuxmuster_net_server_customize_default_partition_size.swap|int * 1024 * 1024 }}          # Partitionsgroesse in KiB. {{ linuxmuster_net_server_customize_default_partition_size.cache|int }} GiB.
+Size = {{ linuxmuster_net_server_customize_default_partition_size.swap|int * 1024 * 1024 }}          # Partitionsgroesse in KiB. {{ linuxmuster_net_server_customize_default_partition_size.swap|int }} GiB.
 Id = 82                  # Partitionstyp (83 = Linux, 82 = swap, c = FAT32, ...)
 FSType = swap            # Dateisystem swap
 Bootable = no            # Bootable-Flag
