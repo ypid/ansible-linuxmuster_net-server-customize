@@ -79,6 +79,13 @@ List of default variables available in the inventory:
       #   AutostartTimeout: 5
       #   DefaultAction: 'start'
       #   os_partition_size: 120
+    
+    
+    linuxmuster_net_server_apt_packages:
+      - 'autopostgresqlbackup'
+      - 'automysqlbackup'
+    linuxmuster_net_server_apt_packages_group:
+    linuxmuster_net_server_apt_packages_host:
 
 
 

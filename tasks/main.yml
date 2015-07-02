@@ -53,3 +53,14 @@
     links: yes
     set_remote_user: no
   tags: ci_ignore
+
+- name: Install additional packages
+  apt:
+    name: "{{ item }}"
+    state: 'latest'
+  when: item is defined and item
+  with_flattened:
+    - linuxmuster_net_server_apt_packages
+    - linuxmuster_net_server_apt_packages_group
+    - linuxmuster_net_server_apt_packages_host
+  tags: package_install
