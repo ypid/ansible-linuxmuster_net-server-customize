@@ -12,6 +12,8 @@ See [linuxmuster.net](https://linuxmuster.net) for more information.
 Features:
 
 * Put [Linbo](https://de.wikipedia.org/wiki/LINBO) configuration files under version control.
+* Generate Linbo start.conf configuration via Ansible/Jinja2 templating.
+* Install additional packages to create database SQL dumps on an regular bases.
 
 ### Installation
 
@@ -22,7 +24,7 @@ This role requires at least Ansible `v1.3`. To install it, run:
 To install via git, run either:
 
     git clone https://github.com/ypid/ansible-linuxmuster_net-server-customize.git ypid.linuxmuster_net-server-customize
-    git submodule add https://github.com/ypid/ansible-linuxmuster_net-server-customize.git roles/ypid.linuxmuster_net-server-customize
+    git submodule add https://github.com/ypid/ansible-linuxmuster_net-server-customize.git ypid.linuxmuster_net-server-customize
 
 
 
