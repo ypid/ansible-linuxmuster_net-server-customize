@@ -58,7 +58,7 @@
   apt:
     name: "{{ item }}"
     state: 'latest'
-  when: item is defined and item
+  when: item|d()
   with_flattened:
     - linuxmuster_net_server_apt_packages
     - linuxmuster_net_server_apt_packages_group
