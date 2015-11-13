@@ -1,32 +1,24 @@
 ---
 
-galaxy_info:
-  author: Robin Schneider
-  description: Apply common customizations to a linuxmuster.net server.
-  license: AGPLv3
-  platforms:
-  - name: Debian
-    versions:
-      - all
-  - name: Ubuntu
-    versions:
-      - all
-  categories:
-    - system
-  min_ansible_version: 1.3
 dependencies: []
-ansigenome_info:
-  github_url: "https://github.com/ypid/ansible-linuxmuster_net-server-customize"
-  git_branch: "master"
-  galaxy_id: "4054"
 
-  travis: True
+galaxy_info:
 
-  synopsis: |
-    See [linuxmuster.net](https://linuxmuster.net) for more information.
+  author: 'Robin Schneider'
+  description: 'Apply common customizations to a linuxmuster.net server.'
+  license: 'AGPL-3.0'
+  min_ansible_version: '1.3'
 
-    Features:
+  platforms:
 
-    * Put [Linbo](https://de.wikipedia.org/wiki/LINBO) configuration files under version control.
-    * Generate Linbo start.conf configuration via Ansible/Jinja2 templating.
-    * Install additional packages to create database SQL dumps on an regular bases.
+    - name: Debian
+      versions:
+        - all
+
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - linuxmuster.net
+    - school

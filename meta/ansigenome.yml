@@ -1,0 +1,17 @@
+---
+
+ansigenome_info:
+  github_url: "https://github.com/ypid/ansible-linuxmuster_net-server-customize"
+  git_branch: "master"
+  galaxy_id: "4054"
+
+  travis: True
+
+  synopsis: |
+    See [linuxmuster.net](https://linuxmuster.net) for more information.
+
+    Features:
+
+    * Put [Linbo](https://de.wikipedia.org/wiki/LINBO) configuration files under version control.
+    * Generate Linbo start.conf configuration via Ansible/Jinja2 templating.
+    * Install additional packages to create database SQL dumps on an regular bases.
