@@ -7,6 +7,15 @@ ansigenome_info:
 
   travis: True
 
+  license_url: 'https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)'
+
+  authors:
+    - name:  'Robin Schneider'
+      url: 'http://ypid.de/'
+      email: 'ypid@riseup.net'
+      twitter: 'ypid'
+      github: 'ypid'
+
   synopsis: |
     See [linuxmuster.net](https://linuxmuster.net) for more information.
 

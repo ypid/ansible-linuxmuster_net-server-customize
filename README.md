@@ -106,7 +106,7 @@ linuxmuster_net_server_apt_packages_host:
 
 `linuxmuster_net-server-customize` role was written by:
 
-- [Robin Schneider](https://github.com/ypid) | [e-mail](mailto:ypid@riseup.net)
+- [Robin Schneider](http://ypid.de/) | [e-mail](mailto:ypid@riseup.net) | [Twitter](https://twitter.com/ypid) | [GitHub](https://github.com/ypid)
 
 License: [AGPLv3](https://tldrlegal.com/license/gnu-affero-general-public-license-v3-%28agpl-3.0%29)
 
