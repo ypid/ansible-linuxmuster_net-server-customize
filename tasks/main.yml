@@ -52,6 +52,7 @@
     recursive: yes
     links: yes
     set_remote_user: no
+    verify_host: True
   tags: ci_ignore
 
 - name: Install additional packages
